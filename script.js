@@ -10,7 +10,8 @@ function convertValues() {
 
     const dolarToday = 4.93
     const euroToday = 5.37
-
+    const ienesToday = 0.33
+    const pesotoday = 0.60
 
     if (currencySelect.value == "dolar") { //se select estiver selecionado o valor de dolar entre aqui
         CurrencyValueToconverted.innerHTML = new Intl.NumberFormat("en-US", {
@@ -24,7 +25,24 @@ function convertValues() {
             style: "currency",
             currency: "EUR"
         }).format(inputCurrencyValue / euroToday)
+
     }
+
+if (currencySelect.value == "ienes"){ 
+   CurrencyValueToconverted.innerHTML = new Intl.NumberFormat("ja-JP",{
+    style: "currency",
+    currency: "JPY"
+   }).format(inputCurrencyValue / ienesToday)
+    }
+
+    if (currencySelect.value == "peso"){
+        CurrencyValueToconverted.innerHTML = new  Intl.NumberFormat("es-AR", {
+            style: "currency",
+            currency: "ARS"
+            
+        }).format( inputCurrencyValue / pesotoday)
+    }
+
 
     currencyValueToConvert.innerHTML = new Intl.NumberFormat("pt-BR", {
         style: "currency",
@@ -46,6 +64,17 @@ function changeCurrency() {
         currencyName.innerHTML = "Euro"
         currencyImage.src = "./assets/Design sem nome 3.png"
     }
+
+    if( currencySelect.value == "ienes"){
+        currencyName.innerHTML = "Ienes"
+        currencyImage.src = "./assets/japao.png"
+    }
+
+    if( currencySelect.value == "peso") {
+        currencyName.innerHTML ="Peso"
+        currencyImage.src="./assets/argentina.png"
+    }
+
 
     convertValues()
 }
