@@ -1,17 +1,17 @@
 const convertButton = document.querySelector(".convert-button")
 const currencySelect = document.querySelector(".currency-select")
 
-
-function convertValues() {
+ const convertValues = async () => {
     const inputCurrencyValue = document.querySelector(".input-currency").value
     const currencyValueToConvert = document.querySelector(".currency-value-to-convert") //valor em real
     const CurrencyValueToconverted = document.querySelector(".currency-value") // outras moedas 
 
+    const data = await fetch("https://economia.awesomeapi.com.br/last/USD-BRL,EUR-BRL,MXN-BRL,JPY-BRL").then(resp => resp.json())
 
-    const dolarToday = 4.93
-    const euroToday = 5.37
-    const ienesToday = 0.33
-    const pesotoday = 0.60
+    const dolarToday = data.USDBRL.high;
+    const euroToday = data.EURBRL.high;
+    const pesotoday = data.MXNBRL.high;
+    const ienesToday = data.JPYBRL.high;
 
     if (currencySelect.value == "dolar") { //se select estiver selecionado o valor de dolar entre aqui
         CurrencyValueToconverted.innerHTML = new Intl.NumberFormat("en-US", {
